@@ -40,6 +40,12 @@ All other parameters take a string. When passing an array to other parameters, o
   newparam(:target) do
     desc "The file in which to store the settings, defaults to
 `/etc/ssh/sshd_config`."
+
+    validate do |v|
+      unless Puppet::Util.absolute_path? v
+        raise ArgumentError, 'target must be an absolute path'
+      end
+    end
   end
 
   newparam(:condition) do
