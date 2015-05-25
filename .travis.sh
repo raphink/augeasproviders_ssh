@@ -50,9 +50,9 @@ export LD_LIBRARY_PATH=$PWD/fakeroot/usr/lib/
 
 # Install gems
 gem install bundler
-bundle install
+LD_LIBRARY_PATH=$PWD/fakeroot/usr/lib/ bundle install
 
 # Reporting only
 bundle show
 puppet --version
-augtool --version
+LD_LIBRARY_PATH=$PWD/fakeroot/usr/lib/ augtool --version
