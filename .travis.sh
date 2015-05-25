@@ -16,20 +16,13 @@ else
     cd augeas && git fetch && git checkout $LENSES
   fi
 
-  PKG_VERSION="=${AUGEAS}*"
-  # Add PPA
-  sudo add-apt-repository -y ppa:raphink/augeas-1.0.0
-  sudo add-apt-repository -y ppa:raphink/augeas-1.1.0
-  sudo add-apt-repository -y ppa:raphink/augeas-1.2.0
-  sudo add-apt-repository -y ppa:raphink/augeas-1.3.0
+  wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas-dev_${AUGEAS}-0ubuntu1~precise1_amd64.deb
+  dpkg -x libaugeas-dev_${AUGEAS}-0ubuntu1~precise1_amd64.deb fakeroot
+  wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas0_${AUGEAS}-0ubuntu1~precise1_amd64.deb
+  dpkg -x libaugeas0_${AUGEAS}-0ubuntu1~precise1_amd64.deb fakeroot
 fi
-sudo add-apt-repository -y ppa:raphink/augeas
-sudo apt-get update
-sudo apt-get install augeas-tools${PKG_VERSION} \
-                     augeas-lenses${PKG_VERSION} \
-                     libaugeas0${PKG_VERSION} \
-                     libaugeas-dev${PKG_VERSION} \
-                     libxml2-dev
+
+export LD_LIBRARY_PATH=$PWD/fakeroot
 
 # Install gems
 gem install bundler

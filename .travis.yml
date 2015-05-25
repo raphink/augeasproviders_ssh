@@ -1,5 +1,12 @@
 language: ruby
-sudo: required
+sudo: false
+addons:
+  apt:
+    packages:
+      - libxml2-dev
+      - libreadline-dev
+      - libaugeas-dev
+      - libaugeas0
 rvm:
   - 1.8.7
   - 1.9.3
@@ -75,7 +82,7 @@ matrix:
 install:
   - "travis_retry ./.travis.sh"
 script:
-  - AUGEAS_LENS_LIB=lib/augeas/lenses:augeas/lenses bundle exec rake
+  - LD_LIBRARY_PATH=fakeroot/usr/lib AUGEAS_LENS_LIB=lib/augeas/lenses:augeas/lenses bundle exec rake
   # Do not include the augeas/ directory in the deployed module
   - rm -rf augeas/
 deploy:
