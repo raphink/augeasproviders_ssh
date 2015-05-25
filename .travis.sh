@@ -16,13 +16,29 @@ else
     cd augeas && git fetch && git checkout $LENSES
   fi
 
-  wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas-dev_${AUGEAS}-0ubuntu1~precise1_amd64.deb
-  dpkg -x libaugeas-dev_${AUGEAS}-0ubuntu1~precise1_amd64.deb fakeroot
-  wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas0_${AUGEAS}-0ubuntu1~precise1_amd64.deb
-  dpkg -x libaugeas0_${AUGEAS}-0ubuntu1~precise1_amd64.deb fakeroot
+  case $AUGEAS in
+    1.0.0)
+      $VERSION=1.0.0-0ubuntu1~precise1
+      ;;
+
+    1.1.0)
+      $VERSION=1.1.0-0ubuntu1~raphink1~lucid1
+      ;;
+
+    1.2.0)
+      $VERSION=1.2.0-0ubuntu1~precise1
+      ;;
+  esac
+
+  if -n $VERSION; then
+    wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas-dev_${VERSION}_amd64.deb
+    dpkg -x libaugeas-dev_${VERSION}.deb fakeroot/
+    wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas0_${VERSION}_amd64.deb
+    dpkg -x libaugeas0_${VERSION}.deb fakeroot/
+  fi
 fi
 
-export LD_LIBRARY_PATH=$PWD/fakeroot
+export LD_LIBRARY_PATH=$PWD/fakeroot/usr/lib/
 
 # Install gems
 gem install bundler
