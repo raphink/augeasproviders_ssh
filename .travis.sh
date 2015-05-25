@@ -18,15 +18,15 @@ else
 
   case $AUGEAS in
     1.0.0)
-      $VERSION=1.0.0-0ubuntu1~precise1
+      VERSION=1.0.0-0ubuntu1~precise1
       ;;
 
     1.1.0)
-      $VERSION=1.1.0-0ubuntu1~raphink1~lucid1
+      VERSION=1.1.0-0ubuntu1~raphink1~lucid1
       ;;
 
     1.2.0)
-      $VERSION=1.2.0-0ubuntu1~precise1
+      VERSION=1.2.0-0ubuntu1~precise1
       ;;
   esac
 
