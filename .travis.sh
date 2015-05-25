@@ -17,23 +17,31 @@ else
   fi
 
   case $AUGEAS in
+    0.10.0)
+      VERSION=0.10.0-0ubuntu4
+      BASE_URL=http://mirror.optus.net/ubuntu/pool/main/a/augeas
+      ;;
+
     1.0.0)
       VERSION=1.0.0-0ubuntu1~precise1
+      BASE_URL=https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files
       ;;
 
     1.1.0)
       VERSION=1.1.0-0ubuntu1~raphink1~lucid1
+      BASE_URL=https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files
       ;;
 
     1.2.0)
       VERSION=1.2.0-0ubuntu1~precise1
+      BASE_URL=https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files
       ;;
   esac
 
   if [ -n $VERSION ]; then
-    wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas-dev_${VERSION}_amd64.deb
+    wget $BASE_URL/libaugeas-dev_${VERSION}_amd64.deb
     dpkg -x libaugeas-dev_${VERSION}.deb fakeroot/
-    wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas0_${VERSION}_amd64.deb
+    wget $BASE_URL/libaugeas0_${VERSION}_amd64.deb
     dpkg -x libaugeas0_${VERSION}.deb fakeroot/
   fi
 fi
