@@ -47,11 +47,10 @@ else
 fi
 
 export LD_LIBRARY_PATH=$PWD/fakeroot/usr/lib/
-export CONFIGURE_ARGS="with-augeas-config=fakeroot/usr/include/"
 
 # Install gems
 gem install bundler
-bundle install
+CONFIGURE_ARGS="with-augeas-config=$PWD/fakeroot/usr/include/" bundle install
 
 # Reporting only
 bundle show
