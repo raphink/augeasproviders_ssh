@@ -40,9 +40,9 @@ else
 
   if [ -n $VERSION ]; then
     wget $BASE_URL/libaugeas-dev_${VERSION}_amd64.deb
-    dpkg -x libaugeas-dev_${VERSION}.deb fakeroot/
+    dpkg -x libaugeas-dev_${VERSION}_amd64.deb fakeroot/
     wget $BASE_URL/libaugeas0_${VERSION}_amd64.deb
-    dpkg -x libaugeas0_${VERSION}.deb fakeroot/
+    dpkg -x libaugeas0_${VERSION}_amd64.deb fakeroot/
   fi
 fi
 
