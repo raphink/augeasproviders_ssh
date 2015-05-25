@@ -30,7 +30,7 @@ else
       ;;
   esac
 
-  if -n $VERSION; then
+  if [ -n $VERSION ]; then
     wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas-dev_${VERSION}_amd64.deb
     dpkg -x libaugeas-dev_${VERSION}.deb fakeroot/
     wget https://launchpad.net/~raphink/+archive/ubuntu/augeas-${AUGEAS}/+files/libaugeas0_${VERSION}_amd64.deb
