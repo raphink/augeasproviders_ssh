@@ -145,9 +145,6 @@ Puppet::Type.type(:sshd_config_match).provide(:augeas, :parent => Puppet::Type.t
       end
 
       aug.set(cmtnode, "#{resource[:name]}: #{resource[:comment]}")
-
-      #require 'pry'
-      #binding.pry
     end
   end
 end
