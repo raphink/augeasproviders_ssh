@@ -55,9 +55,7 @@ Puppet::Type.type(:sshd_config_subsystem).provide(:augeas, :parent => Puppet::Ty
     augopen do |aug|
       comment = aug.get("$target/#comment[following-sibling::*[1][label() =~ regexp('Subsystem', 'i') and #{resource[:name]}]]")
       comment.sub!(/^#{resource[:name]}:\s*/i, "") if comment
-      c = comment || ""
-      puts "comment=#{c}"
-      c
+      comment || ""
     end
   end
 
