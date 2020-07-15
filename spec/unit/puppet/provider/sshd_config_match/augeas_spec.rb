@@ -166,7 +166,7 @@ describe provider_class do
       end
 
       it "should replace the comment" do
-        apply!(Puppet::Type.type(:ssh_config).new(
+        apply!(Puppet::Type.type(:sshd_config_match).new(
           :name      => "User anoncvs",
           :target    => target,
           :provider  => "augeas",
@@ -174,7 +174,7 @@ describe provider_class do
         ))
 
         aug_open(target, "Sshd.lns") do |aug|
-          expect(aug.get("#comment[following-sibling::Match[Condition/User]]").to eq("User anoncvs: This is a different comment"))
+          expect(aug.get("Match[Condition/User]/Settings/#comment")).to eq("User anoncvs: This is a different comment")
         end
       end
     end
