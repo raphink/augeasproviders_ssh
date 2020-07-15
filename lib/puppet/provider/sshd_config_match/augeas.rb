@@ -105,6 +105,7 @@ Puppet::Type.type(:sshd_config_match).provide(:augeas, :parent => Puppet::Type.t
   def position!
     augopen! do |aug|
       self.class.position!(aug, resource)
+      self.comment = resource[:comment]
     end
   end
 
