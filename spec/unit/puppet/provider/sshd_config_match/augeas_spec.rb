@@ -37,7 +37,7 @@ describe provider_class do
       ))
 
       aug_open(target, "Sshd.lns") do |aug|
-        expect(aug.get("#comment[following-sibling::Match[Condition/Host]]")).to eq("Host foo: manage host foo")
+        expect(aug.get("Match[Condition/Host]/Settings/#comment")).to eq("Host foo: manage host foo")
       end
     end
   end
@@ -114,7 +114,7 @@ describe provider_class do
         ))
 
         aug_open(target, "Sshd.lns") do |aug|
-          expect(aug.get("#comment[following-sibling::Match[Condition/User]]")).to eq("User bar: bar is a user")
+          expect(aug.get("Match[Condition/User]/Settings/#comment")).to eq("User bar: bar is a user")
         end
       end
     end
