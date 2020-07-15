@@ -135,15 +135,14 @@ describe provider_class do
 
       it "should delete a comment" do
         apply!(Puppet::Type.type(:sshd_config_match).new(
-          :name      => "VisualHostKey",
+          :name      => "User anoncvs",
           :ensure    => "absent",
-          :host      => "*",
           :target    => target,
           :provider  => "augeas"
         ))
 
         aug_open(target, "Ssh.lns") do |aug|
-          expect(aug.match("Host[.='*']/VisualHostKey[preceding-sibling::#comment]").size).to eq(0)
+          expect(aug.match("Match[Condition/User]/Settings/#comment").size).to eq(0)
         end
       end
     end
