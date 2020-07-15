@@ -134,7 +134,7 @@ describe provider_class do
       end
 
       it "should delete a comment" do
-        apply!(Puppet::Type.type(:ssh_config).new(
+        apply!(Puppet::Type.type(:sshd_config_match).new(
           :name      => "VisualHostKey",
           :ensure    => "absent",
           :host      => "*",
